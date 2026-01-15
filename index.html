@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phòng Khám Thú Y - Đại Học Cần Thơ</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Quicksand', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.2);
+        }
+        
+        .animal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .paw-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M30 30c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10-10-4.5-10-10zm-20 0c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10-10-4.5-10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .input-focus:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .success-modal {
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg paw-pattern text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
+                        <i class="fas fa-paw text-3xl text-emerald-600"></i>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h1 class="text-2xl md:text-3xl font-bold">Phòng Khám Thú Y</h1>
+                        <p class="text-emerald-100 text-sm md:text-base">Đại Học Cần Thơ</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6 text-sm">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>0292 3832 663</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-clock"></i>
+                        <span>7:30 - 17:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner -->
+    <div class="gradient-bg py-8 paw-pattern">
+        <div class="container mx-auto px-4 text-center text-white">
+            <h2 class="text-3xl md:text-4xl font-bold mb-3">
+                <i class="fas fa-heart text-pink-300 mr-2"></i>
+                Chăm sóc thú cưng bằng cả trái tim
+            </h2>
+            <p class="text-emerald-100 text-lg max-w-2xl mx-auto">
+                Đăng ký thông tin để được phục vụ tốt nhất cho người bạn nhỏ của bạn
+            </p>
+        </div>
+    </div>
+
+    <!-- Animal Gallery -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h3 class="text-2xl font-bold text-center text-gray-700 mb-8">
+                <i class="fas fa-star text-yellow-400 mr-2"></i>
+                Những Người Bạn Thân Thiết
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Dog -->
+                <div class="animal-card bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-4 text-center transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-amber-300">
+                    <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden border-4 border-amber-200 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=200&h=200&fit=crop" alt="Chó" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-amber-700 text-lg">Chó</h4>
+                    <p class="text-amber-600 text-sm">L Trung thành</p>
+                </div>
+                <!-- Cat -->
+                <div class="animal-card bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-4 text-center transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-purple-300">
+                    <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden border-4 border-purple-200 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=200&h=200&fit=crop" alt="Mèo" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-purple-700 text-lg">Mèo</h4>
+                    <p class="text-purple-600 text-sm">Dễ thương</p>
+                </div>
+                <!-- Rabbit -->
+                <div class="animal-card bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-4 text-center transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-pink-300">
+                    <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden border-4 border-pink-200 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=200&h=200&fit=crop" alt="Thỏ" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-pink-700 text-lg">Thỏ</h4>
+                    <p class="text-pink-600 text-sm">Thân thiện</p>
+                </div>
+                <!-- Bird -->
+                <div class="animal-card bg-gradient-to-br from-sky-50 to-blue-50 rounded-2xl p-4 text-center transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-sky-300">
+                    <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden border-4 border-sky-200 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=200&h=200&fit=crop" alt="Chim" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-sky-700 text-lg">Chim</h4>
+                    <p class="text-sky-600 text-sm">Thông minh</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section class="py-12 bg-gradient-to-b from-gray-50 to-emerald-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-10">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-2">
+                        <i class="fas fa-clipboard-list text-emerald-500 mr-2"></i>
+                        Đăng Ký Khám
+                    </h3>
+                    <p class="text-gray-600">Vui lòng điền đầy đủ thông tin bên dưới</p>
+                </div>
+
+                <form id="registrationForm" class="bg-white rounded-3xl card-shadow p-8 md:p-10">
+                    <!-- Customer Info -->
+                    <div class="mb-10">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-emerald-600 text-xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-800">Thông Tin Chủ Thú Cưng</h4>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="md:col-span-1">
+                                <label class="block text-gray-700 font-semibold mb-2">
+                                    <i class="fas fa-id-card text-emerald-500 mr-2"></i>Họ tên chủ *
+                                </label>
+                                <input type="text" id="ownerName" required
+                                    class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 input-focus outline-none transition-all"
+                                    placeholder="Nhập họ tên">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-700 font-semibold mb-2">
+                                    <i class="fas fa-map-marker-alt text-emerald-500 mr-2"></i>Địa chỉ *
+                                </label>
+                                <input type="text" id="address" required
+                                    class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 input-focus outline-none transition-all"
+                                    placeholder="Nhập địa chỉ">
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <label class="block text-gray-700 font-semibold mb-2">
+                                <i class="fas fa-phone text-emerald-500 mr-2"></i>Số điện thoại *
+                            </label>
+                            <input type="tel" id="phone" required
+                                class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 input-focus outline-none transition-all"
+                                placeholder="Nhập số điện thoại">
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="flex items-center gap-4 mb-10">
+                        <div class="flex-1 h-px bg-gray-200"></div>
+                        <div class="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-paw text-emerald-600"></i>
+                        </div>
+                        <div class="flex-1 h-px bg-gray-200"></div>
+                    </div>
+
+                    <!-- Pet Info -->
+                    <div class="mb-10">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-dog text-pink-600 text-xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-800">Thông Tin Thú Cưng</h4>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">
+                                    <i class="fas fa-tag text-pink-500 mr-2"></i>Tên thú cưng *
+                                </label>
+                                <input type="text" id="petName" required
+                                    class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 input-focus outline-none transition-all"
+                                    placeholder="Nhập tên thú cưng">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">
+                                    <i class="fas fa-paw text-pink-500 mr-2"></i>Chủng loại *
+                                </label>
+                                <select id="petType" required
+                                    class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 input-focus outline-none transition-all bg-white">
+                                    <option value="">-- Chọn chủng loại --</option>
+                                    <option value="Chó">🐕 Chó</option>
+                                    <option value="Mèo">🐱 Mèo</option>
+                                    <option value="Thỏ">🐰 Thỏ</option>
+                                    <option value="Chim">🐦 Chim</option>
+                                    <option value="Khác">🐾 Loại khác</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">
+                                    <i class="fas fa-birthday-cake text-pink-500 mr-2"></i>Tuổi *
+                                </label>
+                                <input type="text" id="petAge" required
+                                    class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 input-focus outline-none transition-all"
+                                    placeholder="Ví dụ: 2 tuổi, 6 tháng...">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">
+                                    <i class="fas fa-venus-mars text-pink-500 mr-2"></i>Giới tính *
+                                </label>
+                                <div class="flex gap-4">
+                                    <label class="flex-1 cursor-pointer">
+                                        <input type="radio" name="gender" value="Đực" class="hidden peer" required>
+                                        <div class="px-4 py-3 rounded-xl border-2 border-gray-200 text-center peer-checked:border-blue-500 peer-checked:bg-blue-50 peer-checked:text-blue-700 transition-all hover:border-blue-300">
+                                            <i class="fas fa-mars mr-2"></i>Đực
+                                        </div>
+                                    </label>
+                                    <label class="flex-1 cursor-pointer">
+                                        <input type="radio" name="gender" value="Cái" class="hidden peer">
+                                        <div class="px-4 py-3 rounded-xl border-2 border-gray-200 text-center peer-checked:border-pink-500 peer-checked:bg-pink-50 peer-checked:text-pink-700 transition-all hover:border-pink-300">
+                                            <i class="fas fa-venus mr-2"></i>Cái
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn-submit text-white font-bold py-4 px-12 rounded-full text-lg shadow-lg">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Gửi Đăng Ký
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registered Customers List -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h3 class="text-2xl font-bold text-center text-gray-700 mb-8">
+                <i class="fas fa-users text-emerald-500 mr-2"></i>
+                Danh Sách Đã Đăng Ký
+            </h3>
+            <div class="max-w-4xl mx-auto">
+                <div id="customerList" class="space-y-4">
+                    <!-- Customer cards will be added here -->
+                </div>
+                <div id="emptyState" class="text-center py-12 text-gray-400">
+                    <i class="fas fa-inbox text-6xl mb-4"></i>
+                    <p>Chưa có khách hàng đăng ký</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-bg paw-pattern text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-paw text-2xl"></i>
+                    <span class="font-bold text-lg">Phòng Khám Thú Y - Đại Học Cần Thơ</span>
+                </div>
+                <div class="flex items-center gap-4 text-sm">
+                    <a href="#" class="hover:text-emerald-200 transition-colors">
+                        <i class="fab fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="hover:text-emerald-200 transition-colors">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                    <a href="#" class="hover:text-emerald-200 transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="text-center mt-6 text-emerald-100 text-sm">
+                <p>© 2024 Phòng Khám Thú Y Đại Học Cần Thơ. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black/50 success-modal hidden items-center justify-center z-50">
+        <div class="bg-white rounded-3xl p-8 max-w-md mx-4 text-center transform scale-95 transition-all">
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 floating">
+                <i class="fas fa-check text-4xl text-green-500"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-3">Đăng Ký Thành Công!</h3>
+            <p class="text-gray-600 mb-6">Thông tin của bạn đã được ghi nhận. Chúng tôi sẽ liên hệ soonest!</p>
+            <button onclick="closeModal()" class="btn-submit text-white font-bold py-3 px-8 rounded-full">
+                <i class="fas fa-thumbs-up mr-2"></i>Đã Hiểu
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Data storage
+        let customers = JSON.parse(localStorage.getItem('vetCustomers')) || [];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCustomerList();
+        });
+
+        // Form submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const customer = {
+                id: Date.now(),
+                ownerName: document.getElementById('ownerName').value,
+                address: document.getElementById('address').value,
+                phone: document.getElementById('phone').value,
+                petName: document.getElementById('petName').value,
+                petType: document.getElementById('petType').value,
+                petAge: document.getElementById('petAge').value,
+                gender: document.querySelector('input[name="gender"]:checked')?.value,
+                registeredAt: new Date().toLocaleString('vi-VN')
+            };
+
+            // Add to array
+            customers.unshift(customer);
+            
+            // Save to localStorage
+            localStorage.setItem('vetCustomers', JSON.stringify(customers));
+
+            // Show success modal
+            document.getElementById('successModal').classList.remove('hidden');
+            document.getElementById('successModal').classList.add('flex');
+
+            // Reset form
+            this.reset();
+
+            // Update list
+            renderCustomerList();
+        });
+
+        // Render customer list
+        function renderCustomerList() {
+            const listContainer = document.getElementById('customerList');
+            const emptyState = document.getElementById('emptyState');
+
+            if (customers.length === 0) {
+                listContainer.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            // Get pet icon based on type
+            function getPetIcon(type) {
+                const icons = {
+                    'Chó': '🐕',
+                    'Mèo': '🐱',
+                    'Thỏ': '🐰',
+                    'Chim': '🐦',
+                    'Khác': '🐾'
+                };
+                return icons[type] || '🐾';
+            }
+
+            // Get pet color based on type
+            function getPetColor(type) {
+                const colors = {
+                    'Chó': 'from-amber-400 to-orange-500',
+                    'Mèo': 'from-purple-400 to-pink-500',
+                    'Thỏ': 'from-pink-400 to-rose-500',
+                    'Chim': 'from-sky-400 to-blue-500',
+                    'Khác': 'from-emerald-400 to-teal-500'
+                };
+                return colors[type] || 'from-emerald-400 to-teal-500';
+            }
+
+            listContainer.innerHTML = customers.map(customer => `
+                <div class="bg-gradient-to-r from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all">
+                    <div class="flex flex-col md:flex-row md:items-center gap-4">
+                        <div class="w-16 h-16 bg-gradient-to-br ${getPetColor(customer.petType)} rounded-2xl flex items-center justify-center text-3xl shadow-lg">
+                            ${getPetIcon(customer.petType)}
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <h4 class="font-bold text-gray-800 text-lg">${customer.petName}</h4>
+                                <span class="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs rounded-full font-semibold">${customer.petType}</span>
+                                <span class="px-2 py-1 ${customer.gender === 'Đực' ? 'bg-blue-100 text-blue-700' : 'bg-pink-100 text-pink-700'} text-xs rounded-full font-semibold">${customer.gender}</span>
+                            </div>
+                            <p class="text-gray-600 text-sm">
+                                <i class="fas fa-user text-emerald-500 mr-1"></i>${customer.ownerName} 
+                                <span class="mx-2">•</span>
+                                <i class="fas fa-birthday-cake text-pink-500 mr-1"></i>${customer.petAge}
+                            </p>
+                            <p class="text-gray-500 text-sm mt-1">
+                                <i class="fas fa-phone text-emerald-500 mr-1"></i>${customer.phone}
+                                <span class="mx-2">•</span>
+                                <i class="fas fa-map-marker-alt text-emerald-500 mr-1"></i>${customer.address}
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-gray-400">${customer.registeredAt}</span>
+                            <button onclick="deleteCustomer(${customer.id})" class="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Xóa">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Delete customer
+        function deleteCustomer(id) {
+            if (confirm('Bạn có chắc chắn muốn xóa khách hàng này?')) {
+                customers = customers.filter(c => c.id !== id);
+                localStorage.setItem('vetCustomers', JSON.stringify(customers));
+                renderCustomerList();
+            }
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('successModal').classList.add('hidden');
+            document.getElementById('successModal').classList.remove('flex');
+        }
+
+        // Close modal on background click
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
